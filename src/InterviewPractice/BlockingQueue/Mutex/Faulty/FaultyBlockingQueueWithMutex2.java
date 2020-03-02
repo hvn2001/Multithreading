@@ -1,4 +1,4 @@
-package InterviewPractice.BlockingQueue.Mutex;
+package InterviewPractice.BlockingQueue.Mutex.Faulty;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

@@ -1,4 +1,4 @@
-package InterviewPractice.BlockingQueue.Mutex;
+package InterviewPractice.BlockingQueue.Mutex.Faulty;
 
 class DemonstrationFaulty2 {
 

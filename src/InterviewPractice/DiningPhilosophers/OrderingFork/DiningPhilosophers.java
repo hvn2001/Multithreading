@@ -8,7 +8,6 @@ public class DiningPhilosophers {
     private static Random random = new Random(System.currentTimeMillis());
 
     private Semaphore[] forks = new Semaphore[5];
-    private Semaphore maxDiners = new Semaphore(4);
 
     public DiningPhilosophers() {
         forks[0] = new Semaphore(1);
@@ -31,16 +30,30 @@ public class DiningPhilosophers {
     }
 
     void eat(int id) throws InterruptedException {
-        // maxDiners allows only 4 philosphers to
-        // attempt picking up forks.
-        maxDiners.acquire();
 
-        forks[id].acquire();
-        forks[(id + 1) % 5].acquire();
+        // We randomly selected the philosopher with
+        // id 3 as left-handed. All others must be
+        // right-handed to avoid a deadlock.
+        if (id == 3) {
+            acquireForkLeftHanded(3);
+        } else {
+            acquireForkForRightHanded(id);
+        }
+
         System.out.println("Philosopher " + id + " is eating");
         forks[id].release();
         forks[(id + 1) % 5].release();
+    }
 
-        maxDiners.release();
+    void acquireForkForRightHanded(int id) throws InterruptedException {
+        forks[id].acquire();
+        forks[(id + 1) % 5].acquire();
+    }
+
+    // Left-handed philosopher picks the left fork first and then
+    // the right one.
+    void acquireForkLeftHanded(int id) throws InterruptedException {
+        forks[(id + 1) % 5].acquire();
+        forks[id].acquire();
     }
 }

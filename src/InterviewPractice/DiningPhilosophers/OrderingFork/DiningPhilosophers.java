@@ -1,4 +1,4 @@
-package InterviewPractice.DiningPhilosophers.LimitingPhilosophers;
+package InterviewPractice.DiningPhilosophers.OrderingFork;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;

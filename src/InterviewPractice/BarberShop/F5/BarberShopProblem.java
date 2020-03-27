@@ -35,12 +35,13 @@ class BarberShopProblem {
         waitForCustomerToEnter.release();
         waitForBarberToGetReady.acquire();
 
-        waitForBarberToCutHair.acquire();
-        waitForCustomerToLeave.release();
-
+        // The chair in the waiting area becomes available
         lock.lock();
         waitingCustomers--;
         lock.unlock();
+
+        waitForBarberToCutHair.acquire();
+        waitForCustomerToLeave.release();
     }
 
     void barber() throws InterruptedException {
@@ -94,7 +95,7 @@ class BarberShopProblem {
         }
 
         set.clear();
-        Thread.sleep(800);
+        Thread.sleep(500);
 
         for (int i = 0; i < 5; i++) {
             Thread t = new Thread(new Runnable() {
@@ -110,6 +111,7 @@ class BarberShopProblem {
         }
         for (Thread t : set) {
             t.start();
+            Thread.sleep(5);
         }
 
         barberThread.join();

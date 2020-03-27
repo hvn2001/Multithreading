@@ -10,6 +10,8 @@ public class BarberShopProblem {
     ReentrantLock lock = new ReentrantLock();
     Semaphore waitForCustomerToEnter = new Semaphore(0);
     Semaphore waitForBarberToGetReady = new Semaphore(0);
+    Semaphore waitForCustomerToLeave = new Semaphore(0);
+    Semaphore waitForBarberToCutHair = new Semaphore(0);
 
     void customerWalksIn() throws InterruptedException {
         lock.lock();
@@ -30,5 +32,19 @@ public class BarberShopProblem {
     }
 
     void barber() throws InterruptedException {
+        while (true) {
+            // wait till a customer enters a shop
+            waitForCustomerToEnter.acquire();
+            // let the customer know barber is ready
+            waitForBarberToGetReady.release();
+
+            System.out.println("Barber cutting hair...");
+            Thread.sleep(50);
+
+            // let customer thread know, haircut is done
+            waitForBarberToCutHair.release();
+            // wait for customer to leave the barber chair
+            waitForCustomerToLeave.acquire();
+        }
     }
 }

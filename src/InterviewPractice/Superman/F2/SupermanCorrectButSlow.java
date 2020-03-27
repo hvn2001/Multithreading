@@ -9,9 +9,9 @@ public class SupermanCorrectButSlow {
     }
 
     public static SupermanCorrectButSlow getInstance() {
-        synchronized (Superman.class) {
+        synchronized (SupermanCorrectButSlow.class) {
             if (superman == null) {
-                superman = new SupermanWithFlaws();
+                superman = new SupermanCorrectButSlow();
             }
         }
         return superman;

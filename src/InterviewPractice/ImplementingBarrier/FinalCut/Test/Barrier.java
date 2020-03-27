@@ -3,6 +3,17 @@ package InterviewPractice.ImplementingBarrier.FinalCut.Test;
 class Demonstration {
     public static void main(String args[]) throws Exception {
         Barrier.runTest();
+        /*
+        Thread 1
+        Thread 2
+        Thread 3
+        Thread 1
+        Thread 2
+        Thread 3
+        Thread 1
+        Thread 2
+        Thread 3
+        * */
     }
 }
 

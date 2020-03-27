@@ -24,11 +24,21 @@ public class BarberShopProblem {
         waitingCustomers++;
         lock.unlock();
 
-        // Let the barber know you are here, in case he's asleep
+        // Let the barber know, there's atleast 1 customer
         waitForCustomerToEnter.release();
-        // Wait for the barber to come take you to the salon chair when its your turn
+        // Wait for barber to greet you and lead you to barber chair
         waitForBarberToGetReady.acquire();
-        // TODO: complete the rest of the logic.
+
+        // This is where the customer gets the haircut
+
+        // Wait for haircut to complete
+        waitForBarberToCutHair.acquire();
+        // Leave the barber chair and let barber thread know chair is vacant
+        waitForCustomerToLeave.release();
+
+        lock.lock();
+        waitingCustomers--;
+        lock.unlock();
     }
 
     void barber() throws InterruptedException {

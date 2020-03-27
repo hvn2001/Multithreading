@@ -133,6 +133,27 @@ class UnisexBathroom {
         male2.join();
         male3.join();
         male4.join();
+        /*
+        Lisa using bathroom. Current employees in bathroom = 1 1585280268595
+
+        Lisa done using bathroom 1585280271596
+
+        Wentao using bathroom. Current employees in bathroom = 1 1585280271596
+
+        Anil using bathroom. Current employees in bathroom = 2 1585280271596
+
+        Bob using bathroom. Current employees in bathroom = 3 1585280271596
+
+        Wentao done using bathroom 1585280274597
+
+        John using bathroom. Current employees in bathroom = 4 1585280274597
+
+        Bob done using bathroom 1585280274597
+
+        Anil done using bathroom 1585280274597
+
+        John done using bathroom 1585280277597
+        * */
 
     }
 }

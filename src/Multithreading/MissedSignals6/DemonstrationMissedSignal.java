@@ -2,6 +2,7 @@ package Multithreading.MissedSignals6;
 // Missed Signals
 // The above code when ran, will never print the statement "Program Exiting" and execution would time out
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -37,6 +38,9 @@ class MissedSignalExample {
 
                 try {
                     condition.await();
+                    /*while (condition.await(1000, TimeUnit.MILLISECONDS)) {
+                        condition.await();
+                    }*/
                     System.out.println("Received signal");
                 } catch (InterruptedException ie) {
                     // handle interruption

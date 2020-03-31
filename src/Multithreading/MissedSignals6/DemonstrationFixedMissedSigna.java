@@ -13,7 +13,7 @@ class FixedMissedSignalExample {
 
     public static void example() throws InterruptedException {
 
-        final Semaphore semaphore = new Semaphore(1);
+        final Semaphore semaphore = new Semaphore(0);
 
         Thread signaller = new Thread(new Runnable() {
 
@@ -37,7 +37,7 @@ class FixedMissedSignalExample {
 
         signaller.start();
         signaller.join();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
 
         waiter.start();
         waiter.join();

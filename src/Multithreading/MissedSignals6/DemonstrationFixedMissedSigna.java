@@ -35,12 +35,14 @@ class FixedMissedSignalExample {
             }
         });
 
-        signaller.start();
-        signaller.join();
-        Thread.sleep(2000);
-
+        waiter.setName("--Waiter--");
+        signaller.setName("--Signaller--");
         waiter.start();
+        signaller.start();
         waiter.join();
+        signaller.join();
+        // Thread.sleep(2000);
+
 
         System.out.println("Program Exiting.");
     }

@@ -19,30 +19,24 @@ public class BlockingQueueWithMutex2<T> {
     }
 
     public T dequeue() throws InterruptedException {
-
         T item = null;
-
         lock.lock();
         while (size == 0) {
             lock.unlock();
             lock.lock();
         }
-
         if (head == capacity) {
             head = 0;
         }
-
         item = array[head];
         array[head] = null;
         head++;
         size--;
-
         lock.unlock();
         return item;
     }
 
     public void enqueue(T item) throws InterruptedException {
-
         lock.lock();
         while (size == capacity) {
             // Release the mutex to give other threads

@@ -23,31 +23,26 @@ public class BoundedBlockingQueue {
     public int dequeue() throws InterruptedException {
         int item;
         while (size == 0) {
-
         }
         lock.lock();
         if (head == capacity) {
             head = 0;
         }
-
         item = array[head];
         array[head] = -1;
         head++;
         size--;
-
         lock.unlock();
         return item;
     }
 
     public void enqueue(int item) throws InterruptedException {
         while (size == capacity) {
-
         }
         lock.lock();
         if (tail == capacity) {
             tail = 0;
         }
-
         array[tail] = item;
         size++;
         tail++;
